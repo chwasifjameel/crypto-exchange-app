@@ -1,4 +1,5 @@
 import { FaEthereum } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import { StaticNavbar } from '../components';
 
@@ -16,7 +17,7 @@ function Login() {
           src={FeaturedImage}
           width="auto"
           height="auto"
-          alt="featured image"
+          alt="featured"
         />
         <div className="bg-[#F7FBFF] w-full md:w-1/2 flex justify-center items-center relative">
           <div className="overflow-hidden rounded-lg shadow-lg bg-white mx-3 md:mx-0 w-full sm:w-5/6 pb-32 pt-16 flex flex-col items-center z-10">
@@ -31,11 +32,13 @@ function Login() {
                 className="bg-gray-100 rounded-full w-full px-5 py-4 my-3"
                 placeholder="Enter wallet address"
               />
-              <button
-                className="bg-[#1D7DEA] hover:bg-blue-600 text-white rounded-full w-full px-5 py-4 mt-3"
-                title="Connect to Wallet">
-                Connect to Wallet
-              </button>
+              <Link to={'/dashboard'}>
+                <button
+                  className="bg-[#1D7DEA] hover:bg-blue-600 text-white rounded-full w-full px-5 py-4 mt-3"
+                  title="Connect to Wallet">
+                  Connect to Wallet
+                </button>
+              </Link>
             </div>
           </div>
           <img

@@ -1,5 +1,6 @@
 import Logo from '../../assets/logo.png';
 import { FaAngleDown } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function StaticNavbar() {
   return (
@@ -9,10 +10,10 @@ export default function StaticNavbar() {
         aria-label="Top">
         <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
           <div className="flex items-center">
-            <a href="#">
+            <Link to="/">
               <span className="sr-only">Your Company</span>
               <img className="h-10 w-auto" src={Logo} alt="" />
-            </a>
+            </Link>
             <div className="ml-10 hidden space-x-8 lg:block"></div>
           </div>
           <div className="flex items-center">
