@@ -1,16 +1,33 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { FaAngleLeft } from 'react-icons/fa';
+import { MdSpaceDashboard } from 'react-icons/md';
+import { RiAlertFill } from 'react-icons/ri';
+import { BiShieldQuarter } from 'react-icons/bi';
+import { BsShieldFillCheck } from 'react-icons/bs';
 
 import Logo from '../../assets/logo.png';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: 'HomeIcon', current: true },
-  { name: 'Team', href: '#', icon: 'UsersIcon', current: false },
-  { name: 'Projects', href: '#', icon: 'FolderIcon', current: false },
-  { name: 'Calendar', href: '#', icon: 'CalendarIcon', current: false },
-  { name: 'Documents', href: '#', icon: 'InboxIcon', current: false },
-  { name: 'Reports', href: '#', icon: 'ChartBarIcon', current: false },
+  { name: 'Dashboard', href: '#', icon: MdSpaceDashboard, current: true },
+  {
+    name: 'Alerts',
+    href: '#',
+    icon: RiAlertFill,
+    current: false,
+  },
+  {
+    name: 'Defend',
+    href: '#',
+    icon: BiShieldQuarter,
+    current: false,
+  },
+  {
+    name: 'Protect',
+    href: '#',
+    icon: BsShieldFillCheck,
+    current: false,
+  },
 ];
 
 function classNames(...classes) {
@@ -61,7 +78,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     </button>
                   </div>
                 </Transition.Child>
-                <div className="flex flex-shrink-0 items-center px-4">
+                <div className="flex flex-shrink-0 items-center justify-center px-4">
                   <img className="h-8 w-auto" src={Logo} alt="Your Company" />
                 </div>
                 <div className="mt-5 h-0 flex-1 overflow-y-auto">
@@ -74,10 +91,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           item.current
                             ? 'bg-blue-600 text-white'
                             : 'text-[#4D4D4D] hover:bg-indigo-600',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                          'group flex items-center w-4/6 pl-5 py-2 text-base font-medium rounded-md'
                         )}>
                         <item.icon
-                          // className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300"
+                          className="mr-3 h-6 w-6 "
                           aria-hidden="true"
                         />
                         {item.name}
@@ -98,11 +115,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto  pt-5">
-          <div className="flex flex-shrink-0 items-center px-4">
+          <div className="flex flex-shrink-0 items-center justify-center px-4">
             <img className="h-8 w-auto" src={Logo} alt="Your Company" />
           </div>
           <div className="mt-5 flex flex-1 flex-col">
-            <nav className="flex-1 space-y-1 px-2 pb-4">
+            <nav className="flex items-center flex-col flex-1 space-y-1 px-2 pb-4">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -111,12 +128,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     item.current
                       ? 'bg-blue-600 text-white'
                       : 'text-[#4D4D4D] hover:bg-indigo-600',
-                    'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                    'group w-48 flex items-center pl-5 py-2 text-sm font-medium rounded-md'
                   )}>
-                  <item.icon
-                    //   className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
-                    aria-hidden="true"
-                  />
+                  <item.icon className="mr-3 h-6 w-6 " aria-hidden="true" />
                   {item.name}
                 </a>
               ))}

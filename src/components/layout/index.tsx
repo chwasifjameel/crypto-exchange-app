@@ -9,21 +9,10 @@ export default function Example({ children }) {
   return (
     <>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <DashboardNav sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+      <div className="h-screen flex flex-1 flex-col md:pl-64 h-full">
+        <DashboardNav setSidebarOpen={setSidebarOpen} />
         {children}
-      </DashboardNav>
+      </div>
     </>
   );
 }
-
-// import { DashboardNav } from '../navbar';
-// import Sidebar from './Sidebar';
-// export default function Layout({ children }) {
-//   return (
-//     <>
-//       <Sidebar />
-//       <DashboardNav />
-//       {children}
-//     </>
-//   );
-// }
