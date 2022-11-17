@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "preserveConstEnums": true
+  },
+  "include": ["src/**/*", "./src/ts/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
