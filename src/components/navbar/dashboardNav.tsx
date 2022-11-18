@@ -3,6 +3,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { FaBell, FaBars, FaAngleDown } from 'react-icons/fa';
 
 import { Input } from '../utils';
+import { INavbar } from '../../interfaces';
 
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -10,11 +11,11 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar({ setSidebarOpen }) {
+export default function Navbar({ setSidebarOpen }: INavbar) {
   return (
     <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
       <button

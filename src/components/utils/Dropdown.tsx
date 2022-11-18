@@ -1,7 +1,9 @@
 import { Listbox } from '@headlessui/react';
 import { FaAngleDown } from 'react-icons/fa';
 
-const Dropdown = ({ dropdownData, selected, onChange }) => (
+import { IDropdown } from '../../interfaces';
+
+const Dropdown = ({ dropdownData, selected, onChange }: IDropdown) => (
   <div className="relative mx-2">
     <Listbox value={selected} onChange={onChange}>
       <Listbox.Button className="bg-white px-2 flex items-center border-2 rounded-lg">

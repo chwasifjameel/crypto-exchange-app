@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 import { FaExternalLinkAlt, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Dropdown, SortIndicator } from './utils';
+import {
+  IPoolData,
+  IPagination,
+  IPageIndexs,
+  IPaginateButton,
+} from '../interfaces';
 
-const pageOptions = [10, 20, 30, 40, 50];
+const pageOptions: number[] = [10, 20, 30, 40, 50];
 
-export default function Table({ data }) {
-  const [pageSize, setPageSize] = useState(pageOptions[0]);
+export default function Table({ data }: { data: IPoolData[] }) {
+  const [pageSize, setPageSize] = useState<number>(pageOptions[0]);
   const [displayData, setDisplayData] = useState(data.slice(0, 10));
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -19,7 +25,9 @@ export default function Table({ data }) {
   }, [pageSize]);
 
   const handlePageChange = (newPage: number) => {
-    if (newPage < 0 && currentPage < data.length / pageSize) return;
+    console.log(newPage, data.length, pageSize, data.length / pageSize);
+
+    if (newPage < 1 || newPage > Math.round(data.length / pageSize)) return;
 
     setDisplayData(
       data.slice((newPage - 1) * pageSize, (newPage - 1) * pageSize + pageSize)
@@ -78,7 +86,7 @@ export default function Table({ data }) {
               <tbody className="divide-y divide-gray-200 bg-white">
                 {displayData.map((item, index: number) => (
                   <tr
-                    key={item.id}
+                    key={item.pool}
                     className={index % 2 === 0 ? undefined : 'bg-[#F4F9FF]'}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                       <div className="flex items-center font-medium text-gray-900">
@@ -128,11 +136,11 @@ export default function Table({ data }) {
             selected={pageSize}
             onChange={setPageSize}
           />{' '}
-          results of 50 entries
+          results of {data.length} entries
         </div>
         <div className=" flex items-center mb-4 ">
           <Pagination
-            totalPages={data.length / pageSize}
+            totalPages={Math.round(data.length / pageSize)}
             currentPage={currentPage}
             PageChange={handlePageChange}
           />
@@ -142,7 +150,7 @@ export default function Table({ data }) {
   );
 }
 
-const Pagination = ({ totalPages, currentPage, PageChange }) => (
+const Pagination = ({ totalPages, currentPage, PageChange }: IPagination) => (
   <div className="flex mx-2 bg-white px-4 py-2 rounded-lg">
     <PageButton onClick={() => PageChange(currentPage - 1)}>
       <FaAngleLeft />
@@ -160,7 +168,8 @@ const Pagination = ({ totalPages, currentPage, PageChange }) => (
             {item}
           </PageButton>
         ))}
-        ...
+        {getTwoIndexes({ currentPage, totalPages, isNext: true }).length > 0 &&
+          '...'}
         {getTwoIndexes({ currentPage, totalPages, isNext: true }).map(
           (item) => (
             <PageButton onClick={() => PageChange(item)} key={item}>
@@ -176,20 +185,25 @@ const Pagination = ({ totalPages, currentPage, PageChange }) => (
   </div>
 );
 
-const getTwoIndexes = ({ currentPage, totalPages, isNext = false }) => {
+const getTwoIndexes = ({
+  currentPage,
+  totalPages,
+  isNext = false,
+}: IPageIndexs): number[] => {
   if (isNext) {
     if (currentPage + 2 <= totalPages)
       return [currentPage + 1, currentPage + 2];
     else if (currentPage + 1 <= totalPages) return [currentPage + 1];
     else return [];
   }
+
   if (currentPage - 2 > 0)
     return [currentPage - 2, currentPage - 1, currentPage];
   else if (currentPage - 1 > 0) return [currentPage - 1, currentPage];
   else return [currentPage];
 };
 
-const PageButton = ({ children, onClick }) => (
+const PageButton = ({ children, onClick }: IPaginateButton) => (
   <div
     className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center cursor-pointer"
     onClick={onClick}>

@@ -9,7 +9,7 @@ export default function Example({ children }) {
   return (
     <>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="h-screen flex flex-1 flex-col md:pl-64 h-full">
+      <div className="min-w-[100vh] flex flex-1 flex-col md:pl-64 h-full">
         <DashboardNav setSidebarOpen={setSidebarOpen} />
         {children}
       </div>

@@ -1,8 +1,7 @@
 import { FaSortDown, FaSortUp, FaSort } from 'react-icons/fa';
 
-interface ISortDirection {
-  sortDirection: 'up' | 'down' | 'none';
-}
+import { ISortDirection } from '../../interfaces';
+
 const SortOptions = ({ sortDirection }: ISortDirection) =>
   sortDirection === 'up' ? (
     <FaSortUp />

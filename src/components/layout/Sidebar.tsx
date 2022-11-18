@@ -5,9 +5,10 @@ import { MdSpaceDashboard } from 'react-icons/md';
 import { RiAlertFill } from 'react-icons/ri';
 import { BiShieldQuarter } from 'react-icons/bi';
 import { BsShieldFillCheck } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { ISidebar } from '../../interfaces';
 
 const navigation = [
   {
@@ -32,11 +33,11 @@ const navigation = [
   },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
+export default function Sidebar({ sidebarOpen, setSidebarOpen }: ISidebar) {
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>

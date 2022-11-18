@@ -3,16 +3,19 @@ import { FaEthereum, FaRegCopy } from 'react-icons/fa';
 
 import { Table, Layout, Input } from '../components';
 import { getPools } from '../api';
+import { IPoolData } from '../interfaces';
 
 export default function Dashabord() {
-  const [exchangeData, setData] = useState([]);
+  const [exchangeData, setData] = useState<IPoolData[]>([]);
 
+  const fetchPools = async () => {
+    const {
+      data: { data },
+    } = await getPools();
+    setData(data);
+  };
   useEffect(() => {
-    getPools().then(({ data: { data = [] } }) => {
-      // let top20 = data.slice(0, 10);
-      // console.log('resp', top20);
-      setData(data);
-    });
+    fetchPools();
   }, []);
 
   return (

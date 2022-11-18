@@ -1,6 +1,7 @@
 import { FaSearch } from 'react-icons/fa';
 
-const Input = ({ placeholder, search = true }) =>
+import { ISearchInput } from '../../interfaces';
+const Input = ({ placeholder, search = true }: ISearchInput) =>
   search ? (
     <div className="w-full flex items-center relative">
       <FaSearch className="absolute left-2 text-slate-200" />
