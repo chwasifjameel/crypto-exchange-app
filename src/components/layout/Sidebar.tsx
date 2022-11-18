@@ -7,26 +7,28 @@ import { BiShieldQuarter } from 'react-icons/bi';
 import { BsShieldFillCheck } from 'react-icons/bs';
 
 import Logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: MdSpaceDashboard, current: true },
+  {
+    name: 'Dashboard',
+    to: '/dashboard',
+    icon: MdSpaceDashboard,
+  },
   {
     name: 'Alerts',
-    href: '#',
+    to: '/alerts',
     icon: RiAlertFill,
-    current: false,
   },
   {
     name: 'Defend',
-    href: '#',
+    to: '/defend',
     icon: BiShieldQuarter,
-    current: false,
   },
   {
     name: 'Protect',
-    href: '#',
+    to: '/protect',
     icon: BsShieldFillCheck,
-    current: false,
   },
 ];
 
@@ -84,11 +86,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <div className="mt-5 h-0 flex-1 overflow-y-auto">
                   <nav className="space-y-1 px-2">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className={classNames(
-                          item.current
+                          item.to === window.document.location.pathname
                             ? 'bg-blue-600 text-white'
                             : 'text-[#4D4D4D] hover:bg-indigo-600',
                           'group flex items-center w-4/6 pl-5 py-2 text-base font-medium rounded-md'
@@ -98,7 +100,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
@@ -121,18 +123,18 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex items-center flex-col flex-1 space-y-1 px-2 pb-4">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.to}
                   className={classNames(
-                    item.current
+                    item.to === window.document.location.pathname
                       ? 'bg-blue-600 text-white'
-                      : 'text-[#4D4D4D] hover:bg-indigo-600',
+                      : 'text-[#4D4D4D] hover:bg-blue-700 hover:text-white',
                     'group w-48 flex items-center pl-5 py-2 text-sm font-medium rounded-md'
                   )}>
                   <item.icon className="mr-3 h-6 w-6 " aria-hidden="true" />
                   {item.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
