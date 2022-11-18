@@ -71,7 +71,7 @@ export default function Table() {
         <h1 className="text-xl font-semibold text-gray-900">
           Immuna Monitor Portal
         </h1>
-        <div className="flex flex-col md:flex-row items-start lg:items-center justify-between">
+        <div className="flex flex-col md:flex-row items-baseline lg:items-center justify-between">
           <input
             className="bg-white rounded-full w-56 lg:w-72 px-4 py-2 mr-3 mt-2"
             placeholder="Search"
@@ -163,8 +163,8 @@ export default function Table() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-          <div className="mt-16 flex items-center mb-4 ">
+        <div className="mt-10 flex flex-col lg:flex-row items-start lg:items-center justify-between">
+          <div className="flex items-center mb-4 ">
             Show{' '}
             <Dropdown
               selectedPerson={selectedPerson}
