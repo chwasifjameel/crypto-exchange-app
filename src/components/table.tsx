@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react';
-import {
-  FaSortDown,
-  FaSortUp,
-  FaSort,
-  FaExternalLinkAlt,
-  FaAngleLeft,
-  FaAngleRight,
-} from 'react-icons/fa';
-import { Dropdown } from './utils';
+import { FaExternalLinkAlt, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { Dropdown, SortIndicator } from './utils';
 
 const pageOptions = [10, 20, 30, 40, 50];
 
@@ -46,14 +39,14 @@ export default function Table({ data }) {
                     scope="col"
                     className="flex items-center py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                     Chain
-                    <FaSort />
+                    <SortIndicator sortDirection="none" />
                   </th>
                   <th
                     scope="col"
                     className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Pool
-                      <FaSortUp />
+                      <SortIndicator sortDirection="up" />
                     </div>
                   </th>
                   <th
@@ -61,7 +54,7 @@ export default function Table({ data }) {
                     className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Project
-                      <FaSortDown />
+                      <SortIndicator sortDirection="none" />
                     </div>
                   </th>
                   <th
@@ -69,7 +62,7 @@ export default function Table({ data }) {
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       total value locked (USD)
-                      <FaSortDown />
+                      <SortIndicator sortDirection="down" />
                     </div>
                   </th>
                   <th
@@ -77,7 +70,7 @@ export default function Table({ data }) {
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Risk Status
-                      <FaSort />
+                      <SortIndicator sortDirection="none" />
                     </div>
                   </th>
                 </tr>
