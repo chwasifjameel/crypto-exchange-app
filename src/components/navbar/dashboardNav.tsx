@@ -2,6 +2,8 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { FaBell, FaBars } from 'react-icons/fa';
 
+import { Input } from '../utils';
+
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -24,11 +26,8 @@ export default function Navbar({ setSidebarOpen }) {
       </button>
       <div className="flex flex-1 justify-between px-1 md:px-4">
         <div className="flex justify-start md:justify-center items-center">
-          <p className="md:font-medium hidden sm:block">Dashboard</p>
-          <input
-            className="border-slate-200 border-2 rounded-full h-10 w-4/6 md:w-10/12 px-5 py-4 my-3 sm:ml-6"
-            placeholder="Search..."
-          />
+          <p className="md:font-medium hidden sm:block mr-4">Dashboard</p>
+          <Input placeholder="Search..." search />
         </div>
         <div className="ml-1 flex items-center md:ml-6">
           <button

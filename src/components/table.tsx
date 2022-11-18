@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { Listbox } from '@headlessui/react';
-
 import {
   FaSortDown,
   FaSortUp,
   FaSort,
   FaExternalLinkAlt,
-  FaAngleDown,
   FaAngleLeft,
   FaAngleRight,
 } from 'react-icons/fa';
+import { Dropdown } from './utils';
 
 const peopleDropdown = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
@@ -143,8 +141,9 @@ export default function Table() {
         <div className="flex items-center mb-4 ">
           Show{' '}
           <Dropdown
-            selectedPerson={selectedPerson}
-            setSelectedPerson={setSelectedPerson}
+            dropdownData={peopleDropdown}
+            selected={selectedPerson}
+            onChange={setSelectedPerson}
           />{' '}
           results of 50 entries
         </div>
@@ -155,23 +154,6 @@ export default function Table() {
     </div>
   );
 }
-
-const Dropdown = ({ selectedPerson, setSelectedPerson }) => (
-  <div className="relative mx-2">
-    <Listbox value={selectedPerson} onChange={setSelectedPerson}>
-      <Listbox.Button className="bg-white px-2 flex items-center border-2 rounded-lg">
-        {selectedPerson.id} <FaAngleDown className="ml-1" />
-      </Listbox.Button>
-      <Listbox.Options className="absolute cursor-pointer top-7 bg-white left-0 right-0 mx-auto border-2 rounded-lg text-center">
-        {peopleDropdown.map((person) => (
-          <Listbox.Option key={person.id} value={person}>
-            {person.id}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </Listbox>
-  </div>
-);
 
 const Pagination = () => (
   <div className="flex mx-2 bg-white px-4 py-2 rounded-lg">

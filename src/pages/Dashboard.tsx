@@ -1,6 +1,6 @@
 import { FaEthereum, FaRegCopy } from 'react-icons/fa';
 
-import { Table, Layout } from '../components';
+import { Table, Layout, Input } from '../components';
 
 export default function Dashabord() {
   return (
@@ -10,12 +10,9 @@ export default function Dashabord() {
           <h1 className="text-xl font-semibold text-gray-900">
             Immuna Monitor Portal
           </h1>
-          <div className="flex flex-col md:flex-row items-baseline lg:items-center justify-between">
-            <input
-              className="bg-white rounded-full w-56 lg:w-72 px-4 py-2 mr-3 mt-2"
-              placeholder="Search"
-            />
-            <div className="flex mt-3">
+          <div className="mt-3 flex flex-col md:flex-row items-baseline items-start lg:items-center justify-between">
+            <Input placeholder="Search..." search />
+            <div className="flex ml-0 md:ml-3 mt-3 md:mt-0">
               <div className="bg-blue-100 rounded-full">
                 <div className="flex items-center mx-1">
                   <FaEthereum className="bg-blue-100" color="#6C6C6C" />{' '}
