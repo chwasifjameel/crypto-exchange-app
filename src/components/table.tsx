@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FaSortDown,
   FaSortUp,
@@ -9,63 +9,31 @@ import {
 } from 'react-icons/fa';
 import { Dropdown } from './utils';
 
-const peopleDropdown = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+const pageOptions = [10, 20, 30, 40, 50];
 
-const people = [
-  {
-    id: 1,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 2,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 3,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 4,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 5,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-];
+export default function Table({ data }) {
+  const [pageSize, setPageSize] = useState(pageOptions[0]);
+  const [displayData, setDisplayData] = useState(data.slice(0, 10));
+  const [currentPage, setCurrentPage] = useState(1);
 
-export default function Table() {
-  const [selectedPerson, setSelectedPerson] = useState(peopleDropdown[0]);
+  useEffect(() => {
+    setDisplayData(data.slice(0, 10));
+  }, [data]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setDisplayData(data.slice(0, pageSize));
+  }, [pageSize]);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 0 && currentPage < data.length / pageSize) return;
+
+    setDisplayData(
+      data.slice((newPage - 1) * pageSize, (newPage - 1) * pageSize + pageSize)
+    );
+    setCurrentPage(newPage);
+  };
+
   return (
     <div className="mt-8 flex flex-col">
       <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -77,7 +45,7 @@ export default function Table() {
                   <th
                     scope="col"
                     className="flex items-center py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                    Protocol
+                    Chain
                     <FaSort />
                   </th>
                   <th
@@ -90,9 +58,9 @@ export default function Table() {
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
-                      Balance
+                      Project
                       <FaSortDown />
                     </div>
                   </th>
@@ -100,34 +68,56 @@ export default function Table() {
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
-                      Risk
+                      total value locked (USD)
+                      <FaSortDown />
+                    </div>
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <div className="flex items-center">
+                      Risk Status
                       <FaSort />
                     </div>
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
-                {people.map((person, index) => (
+                {displayData.map((item, index: number) => (
                   <tr
-                    key={person.id}
+                    key={item.id}
                     className={index % 2 === 0 ? undefined : 'bg-[#F4F9FF]'}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                       <div className="flex items-center font-medium text-gray-900">
-                        Uniswap <FaExternalLinkAlt className="ml-2" size={10} />
+                        {item.chain}{' '}
+                        <FaExternalLinkAlt className="ml-2" size={10} />
                       </div>
                     </td>
+
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <div className="flex items-center text-gray-900">
-                        0x75f5...1666{' '}
+                        {item.pool.slice(0, 7)}...
+                        {item.pool.slice(
+                          item.pool.length - 6,
+                          item.pool.length - 1
+                        )}{' '}
                         <FaExternalLinkAlt className="ml-2" size={10} />
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      1.104008 WETH / 2,888.28 USDC
+                      <div className="flex items-center text-gray-900">
+                        {item.project} ({item.symbol})
+                      </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                        Active
+                      {item.tvlUsd}
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <span
+                        className={`inline-flex rounded-full flex items-center justify-center w-14 h-6 capitalize   ${
+                          item.ilRisk === 'yes' ? 'bg-green-100' : 'bg-red-100'
+                        } px-2 text-xs font-semibold leading-5 text-green-800`}>
+                        {item.ilRisk}
                       </span>
                     </td>
                   </tr>
@@ -141,36 +131,75 @@ export default function Table() {
         <div className="flex items-center mb-4 ">
           Show{' '}
           <Dropdown
-            dropdownData={peopleDropdown}
-            selected={selectedPerson}
-            onChange={setSelectedPerson}
+            dropdownData={pageOptions}
+            selected={pageSize}
+            onChange={setPageSize}
           />{' '}
           results of 50 entries
         </div>
         <div className=" flex items-center mb-4 ">
-          <Pagination />
+          <Pagination
+            totalPages={data.length / pageSize}
+            currentPage={currentPage}
+            PageChange={handlePageChange}
+          />
         </div>
       </div>
     </div>
   );
 }
 
-const Pagination = () => (
+const Pagination = ({ totalPages, currentPage, PageChange }) => (
   <div className="flex mx-2 bg-white px-4 py-2 rounded-lg">
-    <PageButton>
+    <PageButton onClick={() => PageChange(currentPage - 1)}>
       <FaAngleLeft />
     </PageButton>
-    {[...new Array(5)].map((_, item) => (
-      <PageButton key={item}>{++item}</PageButton>
-    ))}
-    <PageButton>
+    {totalPages < 6 &&
+      [...new Array(totalPages)].map((_, item) => (
+        <PageButton onClick={() => PageChange(++item)} key={item}>
+          {++item}
+        </PageButton>
+      ))}
+    {totalPages > 6 && (
+      <>
+        {getTwoIndexes({ currentPage, totalPages }).map((item) => (
+          <PageButton onClick={() => PageChange(item)} key={item}>
+            {item}
+          </PageButton>
+        ))}
+        ...
+        {getTwoIndexes({ currentPage, totalPages, isNext: true }).map(
+          (item) => (
+            <PageButton onClick={() => PageChange(item)} key={item}>
+              {item}
+            </PageButton>
+          )
+        )}
+      </>
+    )}
+    <PageButton onClick={() => PageChange(currentPage + 1)}>
       <FaAngleRight />
     </PageButton>
   </div>
 );
 
-const PageButton = ({ children }) => (
-  <div className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center">
+const getTwoIndexes = ({ currentPage, totalPages, isNext = false }) => {
+  if (isNext) {
+    if (currentPage + 2 <= totalPages)
+      return [currentPage + 1, currentPage + 2];
+    else if (currentPage + 1 <= totalPages) return [currentPage + 1];
+    else return [];
+  }
+  if (currentPage - 2 > 0)
+    return [currentPage - 2, currentPage - 1, currentPage];
+  else if (currentPage - 1 > 0) return [currentPage - 1, currentPage];
+  else return [currentPage];
+};
+
+const PageButton = ({ children, onClick }) => (
+  <div
+    className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center cursor-pointer"
+    onClick={onClick}>
     {children}
   </div>
 );

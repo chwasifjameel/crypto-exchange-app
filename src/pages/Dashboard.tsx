@@ -1,8 +1,20 @@
+import { useEffect, useState } from 'react';
 import { FaEthereum, FaRegCopy } from 'react-icons/fa';
 
 import { Table, Layout, Input } from '../components';
+import { getPools } from '../api';
 
 export default function Dashabord() {
+  const [exchangeData, setData] = useState([]);
+
+  useEffect(() => {
+    getPools().then(({ data: { data = [] } }) => {
+      // let top20 = data.slice(0, 10);
+      // console.log('resp', top20);
+      setData(data);
+    });
+  }, []);
+
   return (
     <Layout>
       <main className="bg-[#F8F8F8] h-full px-4 sm:px-6 lg:px-8">
@@ -28,7 +40,7 @@ export default function Dashabord() {
             </div>
           </div>
         </div>
-        <Table />
+        <Table data={exchangeData} />
       </main>
     </Layout>
   );
