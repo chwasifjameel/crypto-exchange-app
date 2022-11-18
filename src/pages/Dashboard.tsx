@@ -7,13 +7,22 @@ import { IPoolData } from '../interfaces';
 
 export default function Dashabord() {
   const [exchangeData, setData] = useState<IPoolData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPools = async () => {
-    const {
-      data: { data },
-    } = await getPools();
-    setData(data);
+    try {
+      const {
+        data: { data },
+      } = await getPools();
+      setData(data);
+    } catch (e) {
+      alert(e.message);
+      console.log('Error', e);
+    } finally {
+      setLoading(false);
+    }
   };
+
   useEffect(() => {
     fetchPools();
   }, []);
@@ -43,7 +52,7 @@ export default function Dashabord() {
             </div>
           </div>
         </div>
-        <Table data={exchangeData} />
+        <Table data={exchangeData} loading={loading} />
       </main>
     </Layout>
   );

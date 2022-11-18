@@ -34,6 +34,11 @@ interface IPoolData {
   underlyingTokens: null;
 }
 
+interface IPoolTable {
+  loading: boolean;
+  data: IPoolData[];
+}
+
 interface IPagination {
   totalPages: number;
   currentPage: number;
@@ -72,4 +77,5 @@ export {
   IDropdown,
   INavbar,
   ISidebar,
+  IPoolTable,
 };

@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { FaExternalLinkAlt, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Dropdown, SortIndicator } from './utils';
 import {
-  IPoolData,
   IPagination,
   IPageIndexs,
   IPaginateButton,
+  IPoolTable,
 } from '../interfaces';
 
 const pageOptions: number[] = [10, 20, 30, 40, 50];
 
-export default function Table({ data }: { data: IPoolData[] }) {
+export default function Table({ data, loading }: IPoolTable) {
   const [pageSize, setPageSize] = useState<number>(pageOptions[0]);
   const [displayData, setDisplayData] = useState(data.slice(0, 10));
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,6 +84,15 @@ export default function Table({ data }: { data: IPoolData[] }) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
+                {loading && (
+                  <tr className="w-100">
+                    <td colSpan={5} className="text-center w-100 h-64">
+                      <div className="flex items-center justify-center">
+                        <div className="loader"></div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
                 {displayData.map((item, index: number) => (
                   <tr
                     key={item.pool}
