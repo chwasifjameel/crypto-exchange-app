@@ -27,3 +27,5 @@ I addressed the following things while coding
 3. Linting of code and standard with (ESLint, Husky)
 4. Responsive and milimal design with TailwindCSS
 5. Eliminating console error & warnings
+
+### Please feel free to ask in case of any confusion.
