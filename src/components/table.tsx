@@ -20,8 +20,6 @@ export default function Table({ data, loading }: IPoolTable) {
   }, [pageSize]);
 
   const handlePageChange = (newPage: number) => {
-    console.log(newPage, data.length, pageSize, data.length / pageSize);
-
     if (newPage < 1 || newPage > Math.round(data.length / pageSize)) return;
 
     setDisplayData(data.slice((newPage - 1) * pageSize, (newPage - 1) * pageSize + pageSize));
