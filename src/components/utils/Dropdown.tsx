@@ -11,12 +11,7 @@ const Dropdown = ({ dropdownData, selected, onChange }: IDropdown) => (
       </Listbox.Button>
       <Listbox.Options className="absolute cursor-pointer top-7 bg-white left-0 right-0 mx-auto border-2 rounded-lg text-center">
         {dropdownData.map((item: number) => (
-          <Listbox.Option
-            className={`hover:bg-gray-100 ${
-              selected === item && 'bg-gray-200'
-            }`}
-            key={item}
-            value={item}>
+          <Listbox.Option className={`hover:bg-gray-100 ${selected === item && 'bg-gray-200'}`} key={item} value={item}>
             {item}
           </Listbox.Option>
         ))}

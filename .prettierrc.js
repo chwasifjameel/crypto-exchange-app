@@ -1,15 +1,17 @@
 module.exports = {
-  printWidth: 100,
-  tabWidth: 2,
+  printWidth: 150,
+  tabWidth: 1,
   singleQuote: true,
   semi: true,
   trailingComma: 'all',
+  jsxBracketSameLine: true,
+  proseWrap: 'never',
   arrowParens: 'always',
   overrides: [
     {
       files: '*.{js,jsx,tsx,ts,scss,json,html}',
       options: {
-        tabWidth: 4,
+        tabWidth: 2,
       },
     },
   ],

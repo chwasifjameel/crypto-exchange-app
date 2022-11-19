@@ -67,15 +67,4 @@ interface ISidebar extends INavbar {
   sidebarOpen: boolean;
 }
 
-export type {
-  ISortDirection,
-  ISearchInput,
-  IPoolData,
-  IPagination,
-  IPageIndexs,
-  IPaginateButton,
-  IDropdown,
-  INavbar,
-  ISidebar,
-  IPoolTable,
-};
+export type { ISortDirection, ISearchInput, IPoolData, IPagination, IPageIndexs, IPaginateButton, IDropdown, INavbar, ISidebar, IPoolTable };

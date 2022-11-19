@@ -4,11 +4,21 @@ import { FaBell, FaBars, FaAngleDown } from 'react-icons/fa';
 
 import { Input } from '../utils';
 import { INavbar } from '../../interfaces';
+import { Link } from 'react-router-dom';
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  {
+    name: 'Your Profile',
+    href: '#',
+  },
+  {
+    name: 'Settings',
+    href: '#',
+  },
+  {
+    name: 'Sign out',
+    href: '/login',
+  },
 ];
 
 function classNames(...classes: string[]) {
@@ -64,14 +74,9 @@ export default function Navbar({ setSidebarOpen }: INavbar) {
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
-                      <a
-                        href={item.href}
-                        className={classNames(
-                          active ? 'bg-gray-100' : '',
-                          'block px-4 py-2 text-sm text-gray-700'
-                        )}>
+                      <Link to={item.href} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                         {item.name}
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                 ))}

@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FaExternalLinkAlt, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Dropdown, SortIndicator } from './utils';
-import {
-  IPagination,
-  IPageIndexs,
-  IPaginateButton,
-  IPoolTable,
-} from '../interfaces';
+import { IPagination, IPageIndexs, IPaginateButton, IPoolTable } from '../interfaces';
 
 const pageOptions: number[] = [10, 20, 30, 40, 50];
 
@@ -29,9 +24,7 @@ export default function Table({ data, loading }: IPoolTable) {
 
     if (newPage < 1 || newPage > Math.round(data.length / pageSize)) return;
 
-    setDisplayData(
-      data.slice((newPage - 1) * pageSize, (newPage - 1) * pageSize + pageSize)
-    );
+    setDisplayData(data.slice((newPage - 1) * pageSize, (newPage - 1) * pageSize + pageSize));
     setCurrentPage(newPage);
   };
 
@@ -43,39 +36,29 @@ export default function Table({ data, loading }: IPoolTable) {
             <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-blue-100">
                 <tr>
-                  <th
-                    scope="col"
-                    className="flex items-center py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                  <th scope="col" className="flex items-center py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                     Chain
                     <SortIndicator sortDirection="none" />
                   </th>
-                  <th
-                    scope="col"
-                    className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th scope="col" className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Pool
                       <SortIndicator sortDirection="up" />
                     </div>
                   </th>
-                  <th
-                    scope="col"
-                    className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th scope="col" className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Project
                       <SortIndicator sortDirection="none" />
                     </div>
                   </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       total value locked (USD)
                       <SortIndicator sortDirection="down" />
                     </div>
                   </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Risk Status
                       <SortIndicator sortDirection="none" />
@@ -94,24 +77,17 @@ export default function Table({ data, loading }: IPoolTable) {
                   </tr>
                 )}
                 {displayData.map((item, index: number) => (
-                  <tr
-                    key={item.pool}
-                    className={index % 2 === 0 ? undefined : 'bg-[#F4F9FF]'}>
+                  <tr key={item.pool} className={index % 2 === 0 ? undefined : 'bg-[#F4F9FF]'}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                       <div className="flex items-center font-medium text-gray-900">
-                        {item.chain}{' '}
-                        <FaExternalLinkAlt className="ml-2" size={10} />
+                        {item.chain} <FaExternalLinkAlt className="ml-2" size={10} />
                       </div>
                     </td>
 
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <div className="flex items-center text-gray-900">
                         {item.pool.slice(0, 7)}...
-                        {item.pool.slice(
-                          item.pool.length - 6,
-                          item.pool.length - 1
-                        )}{' '}
-                        <FaExternalLinkAlt className="ml-2" size={10} />
+                        {item.pool.slice(item.pool.length - 6, item.pool.length - 1)} <FaExternalLinkAlt className="ml-2" size={10} />
                       </div>
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -119,9 +95,7 @@ export default function Table({ data, loading }: IPoolTable) {
                         {item.project} ({item.symbol})
                       </div>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {item.tvlUsd}
-                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.tvlUsd}</td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       <span
                         className={`inline-flex rounded-full flex items-center justify-center w-14 h-6 capitalize   ${
@@ -139,20 +113,10 @@ export default function Table({ data, loading }: IPoolTable) {
       </div>
       <div className="mt-10 flex flex-col lg:flex-row items-start lg:items-center justify-between">
         <div className="flex items-center mb-4 ">
-          Show{' '}
-          <Dropdown
-            dropdownData={pageOptions}
-            selected={pageSize}
-            onChange={setPageSize}
-          />{' '}
-          results of {data.length} entries
+          Show <Dropdown dropdownData={pageOptions} selected={pageSize} onChange={setPageSize} /> results of {data.length} entries
         </div>
         <div className=" flex items-center mb-4 ">
-          <Pagination
-            totalPages={Math.round(data.length / pageSize)}
-            currentPage={currentPage}
-            PageChange={handlePageChange}
-          />
+          <Pagination totalPages={Math.round(data.length / pageSize)} currentPage={currentPage} PageChange={handlePageChange} />
         </div>
       </div>
     </div>
@@ -177,15 +141,12 @@ const Pagination = ({ totalPages, currentPage, PageChange }: IPagination) => (
             {item}
           </PageButton>
         ))}
-        {getTwoIndexes({ currentPage, totalPages, isNext: true }).length > 0 &&
-          '...'}
-        {getTwoIndexes({ currentPage, totalPages, isNext: true }).map(
-          (item) => (
-            <PageButton onClick={() => PageChange(item)} key={item}>
-              {item}
-            </PageButton>
-          )
-        )}
+        {getTwoIndexes({ currentPage, totalPages, isNext: true }).length > 0 && '...'}
+        {getTwoIndexes({ currentPage, totalPages, isNext: true }).map((item) => (
+          <PageButton onClick={() => PageChange(item)} key={item}>
+            {item}
+          </PageButton>
+        ))}
       </>
     )}
     <PageButton onClick={() => PageChange(currentPage + 1)}>
@@ -194,28 +155,20 @@ const Pagination = ({ totalPages, currentPage, PageChange }: IPagination) => (
   </div>
 );
 
-const getTwoIndexes = ({
-  currentPage,
-  totalPages,
-  isNext = false,
-}: IPageIndexs): number[] => {
+const getTwoIndexes = ({ currentPage, totalPages, isNext = false }: IPageIndexs): number[] => {
   if (isNext) {
-    if (currentPage + 2 <= totalPages)
-      return [currentPage + 1, currentPage + 2];
+    if (currentPage + 2 <= totalPages) return [currentPage + 1, currentPage + 2];
     else if (currentPage + 1 <= totalPages) return [currentPage + 1];
     else return [];
   }
 
-  if (currentPage - 2 > 0)
-    return [currentPage - 2, currentPage - 1, currentPage];
+  if (currentPage - 2 > 0) return [currentPage - 2, currentPage - 1, currentPage];
   else if (currentPage - 1 > 0) return [currentPage - 1, currentPage];
   else return [currentPage];
 };
 
 const PageButton = ({ children, onClick }: IPaginateButton) => (
-  <div
-    className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center cursor-pointer"
-    onClick={onClick}>
+  <div className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center cursor-pointer" onClick={onClick}>
     {children}
   </div>
 );

@@ -91,15 +91,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: ISidebar) {
                         key={item.name}
                         to={item.to}
                         className={classNames(
-                          item.to === window.document.location.pathname
-                            ? 'bg-blue-600 text-white'
-                            : 'text-[#4D4D4D] hover:bg-indigo-600',
-                          'group flex items-center w-4/6 pl-5 py-2 text-base font-medium rounded-md'
+                          item.to === window.document.location.pathname ? 'bg-blue-600 text-white' : 'text-[#4D4D4D] hover:bg-indigo-600',
+                          'group flex items-center w-4/6 pl-5 py-2 text-base font-medium rounded-md',
                         )}>
-                        <item.icon
-                          className="mr-3 h-6 w-6 "
-                          aria-hidden="true"
-                        />
+                        <item.icon className="mr-3 h-6 w-6 " aria-hidden="true" />
                         {item.name}
                       </Link>
                     ))}
@@ -128,10 +123,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: ISidebar) {
                   key={item.name}
                   to={item.to}
                   className={classNames(
-                    item.to === window.document.location.pathname
-                      ? 'bg-blue-600 text-white'
-                      : 'text-[#4D4D4D] hover:bg-blue-700 hover:text-white',
-                    'group w-48 flex items-center pl-5 py-2 text-sm font-medium rounded-md'
+                    item.to === window.document.location.pathname ? 'bg-blue-600 text-white' : 'text-[#4D4D4D] hover:bg-blue-700 hover:text-white',
+                    'group w-48 flex items-center pl-5 py-2 text-sm font-medium rounded-md',
                   )}>
                   <item.icon className="mr-3 h-6 w-6 " aria-hidden="true" />
                   {item.name}
