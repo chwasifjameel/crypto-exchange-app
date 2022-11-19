@@ -14,6 +14,7 @@ export default function Dashabord() {
             const {
                 data: { data },
             } = await getPools();
+
             setData(data);
         } catch (e: unknown) {
             if (e instanceof Error) alert(e.message);
