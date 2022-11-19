@@ -38,14 +38,17 @@ export default function Navbar({ setSidebarOpen }: INavbar) {
       <div className="flex flex-1 justify-between px-1 md:px-4">
         <div className="flex justify-start md:justify-center items-center">
           <p className="md:font-medium hidden sm:block mr-4">Dashboard</p>
-          <Input placeholder="Search..." search />
+          <div className="md:w-48 lg:w-72">
+            <Input placeholder="Search..." search />
+          </div>
         </div>
         <div className="ml-1 flex items-center md:ml-6">
           <button
             type="button"
-            className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            className="hidden sm:block  relative rounded-full bg-white p-1 mr-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             <span className="sr-only">View notifications</span>
-            <FaBell className="h-6 w-6 mr-2" aria-hidden="true" />
+            <div className="bg-red-700 w-1 h-1 rounded-full absolute top-1 left-[18px]" />
+            <FaBell className="h-4 w-6 text-[#62688F]" aria-hidden="true" />
           </button>
 
           {/* Profile dropdown */}
@@ -59,7 +62,7 @@ export default function Navbar({ setSidebarOpen }: INavbar) {
                   alt=""
                 />
                 <p className="mx-2 hidden sm:block">Betty Copper</p>
-                <FaAngleDown className="text-gray-400 hidden sm:block" />
+                <FaAngleDown className="text-gray-600 hidden sm:block" />
               </Menu.Button>
             </div>
             <Transition

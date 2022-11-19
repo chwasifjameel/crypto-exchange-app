@@ -7,7 +7,7 @@ import { BiShieldQuarter } from 'react-icons/bi';
 import { BsShieldFillCheck } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo.svg';
 import { ISidebar } from '../../interfaces';
 
 const navigation = [

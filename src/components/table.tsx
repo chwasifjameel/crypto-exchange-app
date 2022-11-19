@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FaExternalLinkAlt, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Dropdown, SortIndicator } from './utils';
 import { IPagination, IPageIndexs, IPaginateButton, IPoolTable } from '../interfaces';
@@ -14,10 +14,14 @@ export default function Table({ data, loading }: IPoolTable) {
     setDisplayData(data.slice(0, 10));
   }, [data]);
 
-  useEffect(() => {
+  const resetPage = useCallback(() => {
     setCurrentPage(1);
     setDisplayData(data.slice(0, pageSize));
-  }, [pageSize]);
+  }, [data, pageSize]);
+
+  useEffect(() => {
+    resetPage();
+  }, [pageSize, resetPage]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage < 1 || newPage > Math.round(data.length / pageSize)) return;
@@ -34,17 +38,19 @@ export default function Table({ data, loading }: IPoolTable) {
             <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-blue-100">
                 <tr>
-                  <th scope="col" className="flex items-center py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                    Chain
-                    <SortIndicator sortDirection="none" />
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <div className="flex items-center">
+                      Chain
+                      <SortIndicator sortDirection="none" />
+                    </div>
                   </th>
-                  <th scope="col" className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Pool
                       <SortIndicator sortDirection="up" />
                     </div>
                   </th>
-                  <th scope="col" className=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
                       Project
                       <SortIndicator sortDirection="none" />
@@ -52,7 +58,7 @@ export default function Table({ data, loading }: IPoolTable) {
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     <div className="flex items-center">
-                      total value locked (USD)
+                      TVL (USD)
                       <SortIndicator sortDirection="down" />
                     </div>
                   </th>
@@ -109,7 +115,7 @@ export default function Table({ data, loading }: IPoolTable) {
           </div>
         </div>
       </div>
-      <div className="mt-10 flex flex-col lg:flex-row items-start lg:items-center justify-between">
+      <div className="mt-10 pb-10 flex flex-col lg:flex-row items-start lg:items-center justify-between">
         <div className="flex items-center mb-4 ">
           Show <Dropdown dropdownData={pageOptions} selected={pageSize} onChange={setPageSize} /> results of {data.length} entries
         </div>
@@ -122,7 +128,7 @@ export default function Table({ data, loading }: IPoolTable) {
 }
 
 const Pagination = ({ totalPages, currentPage, PageChange }: IPagination) => (
-  <div className="flex mx-2 bg-white px-4 py-2 rounded-lg">
+  <div className="flex md:mx-2 bg-white md:px-4 py-2 rounded-lg">
     <PageButton onClick={() => PageChange(currentPage - 1)}>
       <FaAngleLeft />
     </PageButton>
