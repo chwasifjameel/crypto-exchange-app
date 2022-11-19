@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Crypto Exchange App Details
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Assumptions made
+I have made some assumptions while attempting this task which are as follow
 
-## Available Scripts
+1. The excat icons are not needed to be export and placed. You can use similar icons from npm libraries
+1. The mobile and tablet versions can be designed as per your understanding
+1. A random crypto endpoint can be used if the exact endpoint is not found. (I tried reaching out to Mariano to clarify but he was not available. If you think it's important, I can change that after clarification).
+1. Redux/Context are not required as application is not too big at this stage
+1. As provided API does not support pagniation so I can use my local logic for that. However, best way for pagination is to be done on server side.
+1. Table sorting is just for design indication, it does not need to be implemented as most of the stuff on page is static.
 
-In the project directory, you can run:
+**Question asked to Mariano regarding point # 3**
 
-### `npm start`
+`While working on the task, I happened to encounter a question can you please get that addressed?`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`The task says to list the balance of the pool. In contrast, there is no endpoint that directly lists such information. Will it be a combination of endpoints or not? I couldn't find any endpoint which lists information exactly like the table header. Maybe the table headers are just for reference?`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`If you could answer these questions for me, it would be much appreciated.`
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Things I kept in mind while coding
+I addressed the following things while coding
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Strong typeing accross all components
+2. Making components to be resuable
+3. Linting of code and standard with (ESLint, Husky)
+4. Responsive and milimal design with TailwindCSS
+5. Eliminating console error & warnings
