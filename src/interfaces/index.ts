@@ -67,7 +67,7 @@ interface ISidebar extends INavbar {
   sidebarOpen: boolean;
 }
 
-export {
+export type {
   ISortDirection,
   ISearchInput,
   IPoolData,
