@@ -46,7 +46,7 @@ export default function Dashabord() {
                   </div>
                 </div>
               </div>
-              <div className="bg-blue-200 hover:bg-blue-100 rounded-full p-2.5 ml-2 cursor-pointer">
+              <div className="bg-blue-200 hover:bg-blue-100 rounded-full w-10 ml-2 flex items-center justify-center cursor-pointer">
                 <FaRegCopy color="#6C6C6C" />
               </div>
             </div>

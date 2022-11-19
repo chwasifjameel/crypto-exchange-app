@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function StaticNavbar() {
   return (
-    <header className="bg-white absolute w-screen z-20">
+    <header className="bg-white absolute w-full z-20">
       <nav
         className="mx-auto max-w-7xl border-b-2 border-gray-100 px-4 sm:px-6 lg:px-8"
         aria-label="Top">
