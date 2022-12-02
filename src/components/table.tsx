@@ -172,7 +172,7 @@ const getTwoIndexes = ({ currentPage, totalPages, isNext = false }: IPageIndexs)
 };
 
 const PageButton = ({ children, onClick }: IPaginateButton) => (
-  <div className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center cursor-pointer" onClick={onClick}>
+  <div className="bg-gray-100 px-3 rounded-md py-2 mx-1 flex items-center cursor-pointer" onClick={onClick} aria-hidden="true">
     {children}
   </div>
 );

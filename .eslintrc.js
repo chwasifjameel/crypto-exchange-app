@@ -28,7 +28,13 @@ module.exports = {
         radix: 'error',
         'space-before-blocks': 'error',
         'import/prefer-default-export': 'off',
-        'react/react-in-jsx-scope': 'off',
+        'react/react-in-jsx-scope': 'off',  
+        "prettier/prettier": [
+            "error",
+            {
+              "endOfLine": "auto"
+            },
+          ],
     },
     overrides: [
         {
